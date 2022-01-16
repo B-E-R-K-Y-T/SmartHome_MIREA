@@ -1,25 +1,79 @@
-from time import time
 import asyncio
+import socket
+import logging
+
+from other.config import IP, PORT
+
+# Configure logging
+logging.basicConfig(
+    format='%(threadName)s %(name)s %(levelname)s: %(message)s',
+    level=logging.INFO
+)
 
 event_loop = asyncio.get_event_loop()
-start = time()
+clients = {
+    'client_socket': [],
+    'address': [],
+    'data': []
+}
+
+tcp_server = socket.socket(
+    socket.AF_INET,
+    socket.SOCK_STREAM
+)
+
+tcp_server.bind(
+    (IP, PORT)
+)
+
+tcp_server.listen()
+# tcp_server.setblocking(False)
 
 
-async def spider(site_name):
-    for page in range(1, 4):
-        await asyncio.sleep(1)
-        print(site_name, page)
+async def accept_client():
+    print('2')
+    while True:
+        client_socket, client_address = await event_loop.sock_accept(tcp_server)
+
+        print(f'Client {client_socket}: {client_address} connected!')
+        clients['client_socket'].append(client_socket)
+        clients['address'].append(client_address)
+
+        await listening_client(client_socket)
+        print('6')
+
+
+async def listening_client(client_socket):
+    print('3')
+    while True:
+        if not client_socket:
+            break
+
+        clients['data'].append(
+            await event_loop.sock_recv(client_socket, 2048)
+        )
+
+        await event_loop.sock_sendall(
+            clients['client_socket'][-1],
+            clients['data'][-1]
+        )
+        print('4')
+    print('5')
 
 
 async def main():
-    tasks = [
-        asyncio.create_task(spider("blog")),
-        asyncio.create_task(spider("tim")),
-    ]
-
-    await asyncio.gather(*tasks)
+    print('1')
+    event_loop.create_task(accept_client())
+    # event_loop.create_task(listening_client())
+    # tasks = [
+    #     asyncio.create_task(accept_client()),
+    #     asyncio.create_task(listening_client()),
+    # ]
+    #
+    # await asyncio.gather(*tasks)
 
 
 if __name__ == '__main__':
-    asyncio.run(main())
-    print("{:.2f}".format(time() - start))
+    # asyncio.run(main())
+    event_loop.run_until_complete(main())
+

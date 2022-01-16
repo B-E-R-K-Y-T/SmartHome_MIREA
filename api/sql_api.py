@@ -11,17 +11,17 @@
 # ----------------------------------------------------------------------------------------------------------------------
 
 import psycopg2
-from other.config import host, user, password, database
+from other.config import HOST, USER, PASSWORD, DATABASE
 
 connection = None
 
 try:
-    assert isinstance(database, object)
+    assert isinstance(DATABASE, object)
     connection = psycopg2.connect(
-        database=database,
-        user=user,
-        password=password,
-        host=host
+        database=DATABASE,
+        user=USER,
+        password=PASSWORD,
+        host=HOST
     )
 except Exception as e:
     print('ERROR[open_db]: {}'.format(e))

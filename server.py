@@ -6,7 +6,7 @@
 
 import socket
 import asyncio
-from other.config import ip, port
+from other.config import IP, PORT
 
 event_loop = asyncio.get_event_loop()
 clients = {
@@ -18,7 +18,7 @@ server = socket.socket(
     socket.AF_INET,
     socket.SOCK_STREAM
 )
-server.bind((ip, port))
+server.bind((IP, PORT))
 
 server.listen()
 
