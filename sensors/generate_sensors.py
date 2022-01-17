@@ -1,21 +1,14 @@
-import random
 import os
 import threading
-
-os.mkdir('Termo')
-os.mkdir('Light')
-os.mkdir('Water_out')
-os.mkdir('Open_door')
-os.mkdir('Work_TV')
-os.mkdir('BERKYT')
 
 sensors = ['Termo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
 
 
-def create_sensor(folder, sensor):
-    for i in range(100_000):
+def create_sensor(sensor):
+    for i in range(500):
         name_sensor = sensor + '_' + str(i)
-        with open(f'{folder}/{name_sensor}.py', 'w') as f:
+        os.mkdir(name_sensor)
+        with open(f'{name_sensor}/{name_sensor}.py', 'w') as f:
             f.write(
                 f'''
     # ======================================================================================================================
@@ -49,12 +42,9 @@ for i in sensors:
     t.append(
         threading.Thread(
             target=create_sensor,
-            args=(i, i)
+            args=(i,)
         )
     )
 
     t[-1].start()
-
-
-
 
