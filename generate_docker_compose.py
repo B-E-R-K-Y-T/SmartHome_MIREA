@@ -127,7 +127,7 @@ def create_dc(name_sensor):
         ports:
             - 1234:1234
         environment:
-            - PYTHONUNBUFFERED = 1
+            - PYTHONUNBUFFERED=1
         depends_on:
             - server
         
