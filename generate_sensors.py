@@ -127,3 +127,5 @@ for sensor in sensors:
     )
 
     t[-1].start()
+
+os.system('docker-compose build && docker-compose up')
