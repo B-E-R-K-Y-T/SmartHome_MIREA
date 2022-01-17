@@ -157,9 +157,9 @@ def create_dc(name_sensor):
             f'''
             
     # -------------------------------------------------------
-    # Это контейнер для сервера.
+    # Это контейнер для {name_sensor}.
     # -------------------------------------------------------    
-    tv_1:
+    {name_sensor}:
         container_name: {name_sensor}
         build: sensors/{name_sensor}/
         command:
