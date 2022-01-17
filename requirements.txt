@@ -1,3 +1,5 @@
-asyncio
-aiohttp
-aiogram
+asyncio~=3.4.3
+aiohttp~=3.8.1
+aiogram~=2.17.1
+
+rich~=10.11.0

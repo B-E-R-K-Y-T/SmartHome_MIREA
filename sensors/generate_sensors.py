@@ -1,8 +1,9 @@
 import random
+from rich.progress import track
 
 sensors = ['Termo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
 
-for i in range(100_000):
+for i in track(range(1_000_000), description='   Создаю python-датчики...'):
     name_sensor = random.choice(sensors) + '_' + str(i)
     with open(f'{name_sensor}.py', 'w') as f:
         f.write(
