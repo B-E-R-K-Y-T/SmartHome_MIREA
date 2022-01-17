@@ -5,7 +5,7 @@ import code
 sensors = ['Thermo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
 # sensors = ['Thermo']
 path = 'sensors'
-quality = 10
+quality = 1
 
 
 def create_sensor(sensor):
@@ -73,3 +73,4 @@ for sensor in sensors:
     )
 
     t[-1].start()
+
