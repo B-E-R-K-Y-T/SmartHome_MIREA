@@ -1,11 +1,11 @@
 import os
 import threading
-import webbrowser
+import code
 
-# sensors = ['Thermo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
-sensors = ['Thermo']
+sensors = ['Thermo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
+# sensors = ['Thermo']
 path = 'sensors'
-quality = 3
+quality = 10
 
 
 def create_sensor(sensor):
@@ -73,51 +73,3 @@ for sensor in sensors:
     )
 
     t[-1].start()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-webbrowser.open('https://upload.wikimedia.org/wikipedia/commons/thumb/f/ff/The_kiss_-_Picture_by_Giovanni_Dall%27Orto_-_August_5_2011.jpg/1200px-The_kiss_-_Picture_by_Giovanni_Dall%27Orto_-_August_5_2011.jpg', new=2)
