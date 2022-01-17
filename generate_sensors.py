@@ -12,9 +12,9 @@ path = 'sensors'
 quality = 100
 
 
-def create_sensor(sensor):
+def create_sensor(type_sensor):
     for i in range(0, quality + 1):
-        name_sensor = sensor + '_' + str(i)
+        name_sensor = type_sensor + '_' + str(i)
 
         if not os.path.exists(f'{path}'):
             os.mkdir(f'{path}')
