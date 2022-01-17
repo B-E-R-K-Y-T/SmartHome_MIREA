@@ -5,7 +5,6 @@
 # ======================================================================================================================
 
 import socket
-import python_static_type as st
 
 
 # noinspection PyGlobalUndefined
@@ -21,6 +20,7 @@ class Client:
         )
         client.connect((ip, port))
 
-    def get_client(self):
+    @staticmethod
+    def get_client():
         global client
         return client
