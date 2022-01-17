@@ -62,6 +62,27 @@ if __name__ == '__main__':
 
 '''
     )
+    with open(f'server/server_thread.py', 'w') as f1:
+        f.write(
+            '''# ======================================================================================================================
+
+# Authors: BERKYT and Александр Хаметзянов
+
+# ======================================================================================================================
+
+FROM python:3.9
+
+WORKDIR /server_thread
+
+COPY . .
+
+ADD server_thread.py /server_thread
+
+ENV PYTHONUNBUFFERED 1
+
+EXPOSE 1234
+    '''
+        )
 
 with open(f'docker-compose.yaml', 'w') as f:
     f.write(
