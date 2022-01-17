@@ -6,11 +6,11 @@
 
 import os
 import threading
-#import code
+import code
 
 sensors = ['Thermo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
 path = 'sensors'
-quality = 1
+quality = 100
 
 
 def create_sensor(sensor):
