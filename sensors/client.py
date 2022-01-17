@@ -1,13 +1,26 @@
-import socket
+# ======================================================================================================================
 
-client_sock = socket.socket(
-    socket.AF_INET,
-    socket.SOCK_STREAM
-)
-client_sock.connect(
-    ('127.0.0.1', 1234)
-)
-client_sock.sendall('Hello, world'.encode('utf-8'))
-data = client_sock.recv(1024)
-# client_sock.close()
-print('Received', repr(data))
+# Author: BERKYT
+
+# ======================================================================================================================
+
+import socket
+import python_static_type as st
+
+
+# noinspection PyGlobalUndefined
+class Client:
+    client = None
+
+    def __init__(self, ip: str, port: int):
+        global client
+
+        client = socket.socket(
+            socket.AF_INET,
+            socket.SOCK_STREAM
+        )
+        client.connect((ip, port))
+
+    def get_client(self):
+        global client
+        return client

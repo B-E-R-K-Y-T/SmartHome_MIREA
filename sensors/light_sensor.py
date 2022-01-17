@@ -14,6 +14,8 @@ client = socket.socket(
 )
 client.connect(('127.0.0.1', 1234))
 
+
+
 while True:
     client.send(('Light: ' + str(random.randint(1, 20))).encode('utf-8'))
     time.sleep(1)
