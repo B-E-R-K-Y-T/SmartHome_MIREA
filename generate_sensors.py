@@ -47,8 +47,31 @@ def create_sensor(type_sensor):
 import random
 import client
 import time
+import threading
+
+
+class ConnectMode:
+    mode = True
+
 
 sensor = client.Client('127.0.0.1', 1234).get_client()
+
+
+def switch():
+    while True:
+        check = input('on or off: ')
+
+        if check == 'on':
+            ConnectMode.mode = True
+        elif check == 'off':
+            ConnectMode.mode = False
+
+
+t = threading.Thread(
+    target=switch,
+    args=()
+)
+t.start()
 
 while True:
     bool_list = [True, False]
