@@ -75,10 +75,18 @@ t.start()
 
 while True:
     if '{name_sensor}' != 'Termo{'_' + str(i)}':
-        sensor.send(('{name_sensor}_sensor: ' + str(ConnectMode.mode)).encode('utf-8'))
+        try:
+            sensor.send(('{name_sensor}_sensor: ' + str(ConnectMode.mode)).encode('utf-8'))
+        except BrokenPipeError:
+            print('Сисечки.')
+            
         time.sleep(1)
     else:
-        sensor.send(('{name_sensor}_sensor: ' + str(random.randint(1, 20))).encode('utf-8'))
+        try:
+            sensor.send(('{name_sensor}_sensor: ' + str(random.randint(1, 20))).encode('utf-8'))
+        except BrokenPipeError:
+            print('Сисечки.')
+            
         time.sleep(1)
 '''
                 )
