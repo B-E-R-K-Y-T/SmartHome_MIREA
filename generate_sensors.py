@@ -1,9 +1,14 @@
+# ======================================================================================================================
+
+# Author: BERKYT
+
+# ======================================================================================================================
+
 import os
 import threading
-import code
+# import code
 
 sensors = ['Thermo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
-# sensors = ['Thermo']
 path = 'sensors'
 quality = 1
 
@@ -20,47 +25,50 @@ def create_sensor(sensor):
         if os.path.exists(f'{path}/{name_sensor}'):
             with open(f'{path}/{name_sensor}/{name_sensor}.py', 'w') as f:
                 f.write(
-                    f'''
-        # ======================================================================================================================
+                    f'''# ======================================================================================================================
 
-        # Author: BERKYT
+# Author: BERKYT
 
-        # ======================================================================================================================
+# ======================================================================================================================
 
-        import client
-        import random
-        import time
-        import code
+from sensors import client
+import random
+import time
+import code
 
-        sensor = client.Client('127.0.0.1', 1234).get_client()
+sensor = client.Client('127.0.0.1', 1234).get_client()
 
-        while True:
-            bool_list = [True, False]
+while True:
+    bool_list = [True, False]
 
-            if '{name_sensor}' != 'Termo{'_' + str(i)}':
-                sensor.send(('{name_sensor}: ' + str(random.choice(bool_list))).encode('utf-8'))
-                time.sleep(1)
-            else:
-                sensor.send(('{name_sensor}: ' + str(random.randint(1, 20))).encode('utf-8'))
-                time.sleep(1)
-
-        '''
+    if 'BERKYT_0' != 'Termo_0':
+        sensor.send(('BERKYT_0: ' + str(random.choice(bool_list))).encode('utf-8'))
+        time.sleep(1)
+    else:
+        sensor.send(('BERKYT_0: ' + str(random.randint(1, 20))).encode('utf-8'))
+        time.sleep(1)
+'''
                 )
             with open(f'{path}/{name_sensor}/Dockerfile', 'w') as f:
                 f.write(
-                    f'''
-        FROM python:3.9
+                    f'''# ======================================================================================================================
 
-        WORKDIR /{name_sensor}
+# Authors: BERKYT and Александр Хаметзянов
 
-        COPY . .
+# ======================================================================================================================
 
-        ADD {name_sensor}.py /{name_sensor}
+FROM python:3.9
 
-        ENV PYTHONUNBUFFERED 1
+WORKDIR /{name_sensor}
 
-        EXPOSE 1234
-        '''
+COPY . .
+
+ADD {name_sensor}.py /{name_sensor}
+
+ENV PYTHONUNBUFFERED 1
+
+EXPOSE 1234
+'''
                 )
 
 
@@ -74,4 +82,3 @@ for sensor in sensors:
     )
 
     t[-1].start()
-

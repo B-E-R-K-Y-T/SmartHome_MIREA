@@ -47,12 +47,17 @@ async def accept_client():
 async def listening_client(client_socket):
     print('3')
     while True:
-        if not client_socket:
-            break
+        # if not client_socket:
+        #     break
 
         clients['data'].append(
             await event_loop.sock_recv(client_socket, 2048)
         )
+
+        result = await event_loop.sock_recv(client_socket, 2048)
+
+        print('sdfsdf')
+        print(result.decode('utf-8'))
 
         await event_loop.sock_sendall(
             clients['client_socket'][-1],
