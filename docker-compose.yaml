@@ -1,0 +1,36 @@
+# ======================================================================================================================
+
+# Authors: BERKYT and Александр Хаметзянов
+
+# ======================================================================================================================
+
+
+version: "3.2"
+services:
+
+    server:
+        container_name: server
+        build: server/
+        command: python ./server_thread.py
+        network_mode: host
+        ports:
+            - 1234:1883     
+        environment:
+            - PYTHONUNBUFFERED=1
+    
+        
+
+   
+    test_1:
+        container_name: test_1
+        build: test_1/
+        command:
+            python ./test_1.py
+        network_mode: host
+        ports:
+            - 1234:1234
+        environment:
+            - PYTHONUNBUFFERED = 1
+        depends_on:
+            - server
+        
