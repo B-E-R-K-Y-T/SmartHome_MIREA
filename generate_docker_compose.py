@@ -31,6 +31,10 @@ with open(f'server/server_thread.py', 'w') as f:
 
 
 
+import sys
+
+sys.path.insert(0, 'SmartHome_MIREA/')
+
 import socket
 import threading
 from other.config import IP, PORT
@@ -72,6 +76,43 @@ def start_server():
 if __name__ == '__main__':
     start_server()
 
+
+'''
+    )
+
+with open(f'server/config.py', 'w') as f:
+    f.write(
+        '''# ======================================================================================================================
+
+# Author: BERKYT
+
+# ======================================================================================================================
+
+# Telegram-bot
+# ----------------------------------------------------------------------------------------------------------------------
+
+# link t.me/smart_home_mirea_bot
+TOKEN = '5062184023:AAF-xY8uVWoZoC4u5WoiAGpf36UyDlqTHV8'
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+# PostgreSQL
+# ----------------------------------------------------------------------------------------------------------------------
+
+HOST = 'localhost'
+USER = 'postgres'
+PASSWORD = '1488'
+DATABASE = 'postgres'
+
+# ----------------------------------------------------------------------------------------------------------------------
+
+# Server
+# ----------------------------------------------------------------------------------------------------------------------
+
+IP = '127.0.0.1'
+PORT = 1234
+
+# ----------------------------------------------------------------------------------------------------------------------
 
 '''
     )
@@ -142,6 +183,41 @@ def create_dc(name_sensor):
             - PYTHONUNBUFFERED=1
         depends_on:
             - server
+        
+'''
+        )
+
+    with open(f'docker-compose.yaml', 'a') as f:
+        f.write(
+            f'''
+   
+# ======================================================================================================================
+
+# Author: BERKYT
+
+# ======================================================================================================================
+
+import socket
+
+
+# noinspection PyGlobalUndefined
+class Client:
+    client = None
+
+    def __init__(self, ip: str, port: int):
+        global client
+
+        client = socket.socket(
+            socket.AF_INET,
+            socket.SOCK_STREAM
+        )
+        client.connect((ip, port))
+
+    @staticmethod
+    def get_client():
+        global client
+        return client
+
         
 '''
         )
