@@ -6,6 +6,7 @@
 
 import os
 import threading
+import code
 
 sensors = ['Thermo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
 path = 'sensors'
