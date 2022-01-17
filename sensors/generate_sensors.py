@@ -21,7 +21,14 @@ import time
 sensor = client.Client('127.0.0.1', 1234).get_client()
 
 while True:
-    sensor.send(('{name_sensor}_sensor: ' + str(random.randint(1, 20))).encode('utf-8'))
-    time.sleep(1)
+    bool_list = [True, False]
+    
+    if '{name_sensor}' != 'Termo{'_' + str(i)}':
+        sensor.send(('{name_sensor}: ' + str(random.choice(bool_list))).encode('utf-8'))
+        time.sleep(1)
+    else:
+        sensor.send(('{name_sensor}: ' + str(random.randint(1, 20))).encode('utf-8'))
+        time.sleep(1)
+
 '''
         )
