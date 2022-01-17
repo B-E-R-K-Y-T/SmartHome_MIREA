@@ -65,7 +65,7 @@ def switch():
             ConnectMode.mode = True
         elif check == 'off':
             ConnectMode.mode = False
-
+ 
 
 t = threading.Thread(
     target=switch,
