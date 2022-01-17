@@ -106,7 +106,7 @@ services:
         ports:
             - 1234:1883     
         environment:
-            - PYTHONUNBUFFERED = 1
+            - PYTHONUNBUFFERED=1
     
         
 '''
