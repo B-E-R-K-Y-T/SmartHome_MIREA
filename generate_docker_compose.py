@@ -16,15 +16,15 @@ with open(f'docker-compose.yaml', 'w') as f:
 version: "3.2"
 services:
 
-server:
-    container_name: server
-    build: server /
-    command: python. /server_thread.py
-    network_mode: host
-    ports:
-        - 1234: 1883     
-    environment:
-        - PYTHONUNBUFFERED = 1
+    server:
+        container_name: server
+        build: server /
+        command: python. /server_thread.py
+        network_mode: host
+        ports:
+            - 1234: 1883     
+        environment:
+            - PYTHONUNBUFFERED = 1
     
         
 '''
