@@ -7,7 +7,6 @@
 import os
 import threading
 import generate_docker_compose as gdc
-import code
 
 sensors = input('Введите типы сенсоров через запятую: ')
 sensors = sensors.replace(' ', '').split(',')

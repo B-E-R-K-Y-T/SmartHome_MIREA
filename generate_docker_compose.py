@@ -73,11 +73,11 @@ with open(f'server/Dockerfile', 'w') as f:
 
 FROM python:3.9
 
-WORKDIR /server_thread
+WORKDIR /server
 
 COPY . .
 
-ADD server_thread.py /server_thread
+ADD server_thread.py /server
 
 ENV PYTHONUNBUFFERED 1
 
