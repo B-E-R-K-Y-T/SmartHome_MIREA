@@ -35,6 +35,22 @@ def create_sensor(sensor):
     
     '''
             )
+        with open(f'{name_sensor}/Dockerfile', 'w') as f:
+            f.write(
+                f'''
+    FROM python:3.9
+    
+    WORKDIR /{name_sensor}
+    
+    COPY . .
+    
+    ADD {name_sensor}.py /{name_sensor}
+    
+    ENV PYTHONUNBUFFERED 1
+    
+    EXPOSE 1234
+    '''
+            )
 
 
 t = []
