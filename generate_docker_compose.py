@@ -120,7 +120,7 @@ def create_dc(name_sensor):
    
     {name_sensor}:
         container_name: {name_sensor}
-        build: {name_sensor}/
+        build: sensors/{name_sensor}/
         command:
             python ./{name_sensor}.py
         network_mode: host
