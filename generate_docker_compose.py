@@ -19,10 +19,10 @@ services:
     server:
         container_name: server
         build: server /
-        command: python. /server_thread.py
+        command: python ./server_thread.py
         network_mode: host
         ports:
-            - 1234: 1883     
+            - 1234:1883     
         environment:
             - PYTHONUNBUFFERED = 1
     
@@ -40,10 +40,10 @@ def create_dc(name_sensor):
         container_name: {name_sensor}
         build: light /
         command:
-            python. /{name_sensor}.py
+            python ./{name_sensor}.py
         network_mode: host
         ports:
-            - 1234: 1234
+            - 1234:1234
         environment:
             - PYTHONUNBUFFERED = 1
         depends_on:
