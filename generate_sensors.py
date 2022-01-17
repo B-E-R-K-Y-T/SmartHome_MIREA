@@ -53,11 +53,11 @@ sensor = client.Client('127.0.0.1', 1234).get_client()
 while True:
     bool_list = [True, False]
 
-    if 'BERKYT_0' != 'Termo_0':
+    if '{name_sensor}' != 'Termo{'_' + str(i)}':
         sensor.send(('BERKYT_0: ' + str(random.choice(bool_list))).encode('utf-8'))
         time.sleep(1)
     else:
-        sensor.send(('BERKYT_0: ' + str(random.randint(1, 20))).encode('utf-8'))
+        sensor.send(('{name_sensor}_sensor: ' + str(random.randint(1, 20))).encode('utf-8'))
         time.sleep(1)
 '''
                 )

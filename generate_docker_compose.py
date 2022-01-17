@@ -117,7 +117,7 @@ def create_dc(name_sensor):
     with open(f'docker-compose.yaml', 'a') as f:
         f.write(
             f'''
-    # хуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуйхуй
+   
     {name_sensor}:
         container_name: {name_sensor}
         build: {name_sensor}/
