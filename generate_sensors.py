@@ -6,14 +6,18 @@
 
 import os
 import threading
-import code
+import generate_docker_compose as gdc
 
-sensors = input('Введите типы сенсоров через запятую.')
+sensors = input('Введите типы сенсоров через запятую: ')
 sensors = sensors.split(',')
 path = 'sensors'
+
+if not os.path.exists(f'{path}'):
+    os.mkdir(f'{path}')
+
 while True:
     try:
-        quality = int(input('Введите кол-во сенсоров.'))
+        quality = int(input('Введите кол-во сенсоров: '))
     except Exception as e:
         print(e)
         continue
@@ -22,11 +26,11 @@ while True:
 
 
 def create_sensor(type_sensor):
-    for i in range(0, quality + 1):
+    for i in range(1, quality + 1):
         name_sensor = type_sensor + '_' + str(i)
 
-        if not os.path.exists(f'{path}'):
-            os.mkdir(f'{path}')
+        gdc.create_dc(name_sensor)
+
         if not os.path.exists(f'{path}/{name_sensor}'):
             os.mkdir(f'{path}/{name_sensor}')
 
