@@ -13,7 +13,7 @@ sensors = ['Termo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
 
 
 def create_sensor(folder, sensor):
-    for i in range(10_000):
+    for i in range(100_000):
         name_sensor = sensor + '_' + str(i)
         with open(f'{folder}/{name_sensor}.py', 'w') as f:
             f.write(
