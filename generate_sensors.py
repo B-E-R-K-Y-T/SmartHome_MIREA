@@ -44,10 +44,11 @@ def create_sensor(type_sensor):
 
 # ======================================================================================================================
 
-import sensors.client as client
 import random
 import time
 import joke 
+
+from sensors import client
 
 sensor = client.Client('127.0.0.1', 1234).get_client()
 
