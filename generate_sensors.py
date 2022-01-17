@@ -8,9 +8,17 @@ import os
 import threading
 import code
 
-sensors = ['Thermo', 'Light', 'Water_out', 'Open_door', 'Work_TV', 'BERKYT']
+sensors = input('Введите типы сенсоров через запятую.')
+sensors = sensors.split(',')
 path = 'sensors'
-quality = 100
+while True:
+    try:
+        quality = int(input('Введите кол-во сенсоров.'))
+    except Exception as e:
+        print(e)
+        continue
+    else:
+        break
 
 
 def create_sensor(type_sensor):
