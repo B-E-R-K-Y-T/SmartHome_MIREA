@@ -44,7 +44,7 @@ def create_sensor(type_sensor):
 
 # ======================================================================================================================
 
-from sensors import client
+import sensors.client as client
 import random
 import time
 import joke
