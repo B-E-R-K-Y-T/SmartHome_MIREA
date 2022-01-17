@@ -115,7 +115,7 @@ services:
         command: python ./server_thread.py
         network_mode: host
         ports:
-            - 1234:1883     
+            - 1234:1234     
         environment:
             - PYTHONUNBUFFERED=1
     
