@@ -7,7 +7,6 @@
 import os
 import threading
 import generate_docker_compose as gdc
-import joke
 
 sensors = input('Введите типы сенсоров через запятую: ')
 sensors = sensors.replace(' ', '').split(',')
@@ -29,13 +28,13 @@ while True:
 def create_sensor(type_sensor):
     for i in range(1, quality + 1):
         name_sensor = type_sensor + '_' + str(i)
-
         gdc.create_dc(name_sensor)
 
         if not os.path.exists(f'{path}/{name_sensor}'):
             os.mkdir(f'{path}/{name_sensor}')
 
         if os.path.exists(f'{path}/{name_sensor}'):
+            # Создаю датчик
             with open(f'{path}/{name_sensor}/{name_sensor}.py', 'w') as f:
                 f.write(
                     f'''# ======================================================================================================================
@@ -45,10 +44,8 @@ def create_sensor(type_sensor):
 # ======================================================================================================================
 
 import random
+import client
 import time
-import joke 
-
-from sensors import client
 
 sensor = client.Client('127.0.0.1', 1234).get_client()
 
@@ -63,6 +60,39 @@ while True:
         time.sleep(1)
 '''
                 )
+            # Создаю клиент
+            with open(f'{path}/{name_sensor}/client.py', 'w') as f:
+                    f.write(
+                        f'''# ======================================================================================================================
+
+# Author: BERKYT
+
+# ======================================================================================================================
+
+import socket
+
+
+# noinspection PyGlobalUndefined
+class Client:
+    client = None
+
+    def __init__(self, ip: str, port: int):
+        global client
+
+        client = socket.socket(
+            socket.AF_INET,
+            socket.SOCK_STREAM
+        )
+        client.connect((ip, port))
+
+    @staticmethod
+    def get_client():
+        global client
+        return client
+
+                '''
+                    )
+            # Создаю докер файл
             with open(f'{path}/{name_sensor}/Dockerfile', 'w') as f:
                 f.write(
                     f'''# ======================================================================================================================
