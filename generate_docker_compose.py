@@ -62,8 +62,9 @@ if __name__ == '__main__':
 
 '''
     )
-    with open(f'server/server_thread.py', 'w') as f1:
-        f.write(
+
+with open(f'server/Dockerfile', 'w') as f:
+    f.write(
             '''# ======================================================================================================================
 
 # Authors: BERKYT and Александр Хаметзянов
@@ -98,7 +99,7 @@ services:
 
     server:
         container_name: server
-        build: server /
+        build: server/
         command: python ./server_thread.py
         network_mode: host
         ports:
@@ -118,7 +119,7 @@ def create_dc(name_sensor):
 
     {name_sensor}:
         container_name: {name_sensor}
-        build: light /
+        build: {name_sensor}_sensor/
         command:
             python ./{name_sensor}.py
         network_mode: host
