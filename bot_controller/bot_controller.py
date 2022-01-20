@@ -5,20 +5,16 @@
 # ======================================================================================================================
 
 import logging
-import socket
-import asyncio
-import aiohttp
-import json
+import code.client.base_client as base_client
+import code.server.base_server as base_server
+
 
 from aiogram import Bot, Dispatcher, executor, types
 from other.config import TOKEN
 
 
-client = socket.socket(
-    socket.AF_INET,
-    socket.SOCK_STREAM
-)
-client.connect(('127.0.0.1', 8888))
+# sensor = base_client.Client('127.0.0.1', 2323).get_client()
+base_server.Server('127.0.0.1', 8888)
 
 API_TOKEN = TOKEN
 
@@ -48,6 +44,7 @@ async def echo(message: types.Message):
 
     await message.answer(message.text)
     await message.answer(message.chat.id)
+
     client.send(message.text.encode('utf-8'))
 
 
