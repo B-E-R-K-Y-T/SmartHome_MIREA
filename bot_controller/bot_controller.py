@@ -18,7 +18,7 @@ client = socket.socket(
     socket.AF_INET,
     socket.SOCK_STREAM
 )
-client.connect(('127.0.0.1', 1234))
+client.connect(('127.0.0.1', 8888))
 
 API_TOKEN = TOKEN
 
@@ -41,17 +41,6 @@ async def send_welcome(message: types.Message):
     await message.reply("Hi!\nI'm EchoBot!\nPowered by aiogram.")
 
 
-@dp.message_handler(command='off')
-async def echo(message: types.Message):
-
-    with open('personal.json', 'r', encoding='utf-8') as f:  # открыли файл
-        text = json.load(f)  # загнали все из файла в переменную
-        print(text)  # вывели результат на экран
-
-    await message.answer(text['mode'])
-    await message.answer(message.chat.id)
-
-
 @dp.message_handler()
 async def echo(message: types.Message):
     # old style:
@@ -59,6 +48,7 @@ async def echo(message: types.Message):
 
     await message.answer(message.text)
     await message.answer(message.chat.id)
+    client.send(message.text.encode('utf-8'))
 
 
 if __name__ == '__main__':

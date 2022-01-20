@@ -6,6 +6,7 @@
 
 import os
 
+
 if not os.path.exists(f'server'):
     os.mkdir(f'server')
 
