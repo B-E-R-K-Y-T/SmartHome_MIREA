@@ -45,7 +45,7 @@ async def echo(message: types.Message):
     await message.answer(message.text)
     await message.answer(message.chat.id)
 
-    client.send(message.text.encode('utf-8'))
+    # client.send(message.text.encode('utf-8'))
 
 
 if __name__ == '__main__':

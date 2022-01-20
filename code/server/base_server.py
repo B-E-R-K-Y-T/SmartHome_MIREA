@@ -1,3 +1,9 @@
+# ======================================================================================================================
+
+# Author: BERKYT
+
+# ======================================================================================================================
+
 import asyncio
 
 
@@ -30,7 +36,7 @@ class EchoServerProtocol(asyncio.Protocol):
         print('Connection is lost!')
 
 
-class Server(EchoServerProtocol):
+class Server:
     def __init__(self, host, port):
         asyncio.run(self.start_server(host, port))
 
